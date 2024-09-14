@@ -103,7 +103,7 @@ const Login = () => {
             <b>Sign in</b>
           </Typography>
         </Button>
-        <Typography>
+        <Typography sx={{textAlign:'center'}}>
           Do you want to create an account?&nbsp;
           <Link href="#">Sign Up</Link>
         </Typography>

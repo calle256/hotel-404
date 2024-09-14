@@ -4,13 +4,14 @@ import './index.css';
 import App from './App';
 import Login from './Components/SignIn/login';
 import reportWebVitals from './reportWebVitals';
+import Signup from './Components/SignIn/signup';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Login/>
+    <Signup/>
   </React.StrictMode>
 );
 
