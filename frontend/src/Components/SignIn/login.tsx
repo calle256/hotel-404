@@ -1,0 +1,115 @@
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import TextField from "@mui/material/TextField";
+import * as React from "react";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import { useState } from "react";
+import { profiles, IProfile } from "../../MocData/login";
+
+const Login = () => {
+  const paperStyle = {
+    padding: 20,
+    height: "45vh",
+    width: 380,
+    margin: "20px auto",
+  };
+
+  const btnstyle = { margin: "10px 3px" };
+  const userlblstyle = { margin: "10px 3px" };
+  const titleSpacing = { marginTop: "5px" };
+
+  //För att hantera Username
+  const [username, SetUsername] = useState("");
+  //för att hantera password
+  const [password, SetPassword] = useState("");
+
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
+  //För att kolla ifall UserName och PassWord är rätt
+  const handleLogin = () => {
+
+    //Kolla Genom Mock listan för att se ifall username och password hittar en match 
+    const match = profiles.find((profile) => profile.username === username && profile.password === password);
+    if (match) {
+      alert("Login successful!");
+    } else {
+      alert("Invalid username or password.");
+    }
+  };
+
+  return (
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Paper elevation={10} style={paperStyle}>
+        {/* Title with logo */}
+        <Grid container direction="row" alignItems="center">
+          <ApartmentIcon />
+          <h1>HOTEL 404</h1>
+        </Grid>
+
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          style={titleSpacing}
+        >
+          <h2>Sign in</h2>
+        </Grid>
+
+        <TextField
+          label="Username"
+          placeholder="User123"
+          fullWidth
+          required
+          style={userlblstyle}
+          onChange={(e) => SetUsername(e.target.value)}
+          value={username}
+        />
+        <TextField
+          label="Password"
+          placeholder="Password"
+          type="password"
+          fullWidth
+          required
+          id="outlined-password-input"
+          style={userlblstyle}
+          value={password}
+          onChange={(e) => SetPassword(e.target.value)}
+          onKeyPress={handleKeyDown}
+        />
+
+        <Button
+          onClick={handleLogin}
+          type="submit"
+          color="primary"
+          size="large"
+          variant="contained"
+          style={btnstyle}
+          fullWidth
+        >
+          <Typography sx={{ mt: 1 }}>
+            <b>Sign in</b>
+          </Typography>
+        </Button>
+        <Typography>
+          Do you want to create an account?&nbsp;
+          <Link href="#">Sign Up</Link>
+        </Typography>
+      </Paper>
+    </Grid>
+  );
+};
+
+export default Login;
