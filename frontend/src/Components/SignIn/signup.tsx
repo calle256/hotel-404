@@ -8,13 +8,12 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-import { getValue } from "@testing-library/user-event/dist/utils";
-import { profile } from "console";
 
 const Signup = () => {
+  //styles
   const paperStyle = {
     padding: 20,
-    height: "70vh",
+    height: "65vh",
     width: 380,
     margin: "20px auto",
   };
@@ -26,20 +25,32 @@ const Signup = () => {
   const [username, SetUsername] = useState("");
   //för att hantera password
   const [password, SetPassword] = useState("");
-
+  //hanterar firstname
   const [firstname, SetFirstName] = useState("");
+  //hanterar lastname
   const [lastname, SetLastName] = useState("");
+  //hanterar age
   const [age, SetAge] = useState("");
+  //hanterar error
   const [error, SetErrorMsg] = useState("");
 
+  //Ifall användaren tycker "Enter" i den efter att ha fyllt i password
+  const handKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      handleSignUp();
+    }
+  };
+  //Den här funktionen hanterar nya användare
   const handleSignUp = () => {
     //kolla ifall den redan finns med i listan
     const match = profiles.find(
       (profile) => profile.name === firstname && profile.lastname === lastname
     );
+    //Kollar ifall användarnamnet är taget av en annan användare
     const usernameTaken = profiles.find(
       (profile) => profile.username === username
     );
+    //Ser till att användaren har fyllt i alla textfields
     if (!firstname || !lastname || !age || !username || !password) {
       SetErrorMsg("All fields are required!");
       return;
@@ -145,8 +156,10 @@ const Signup = () => {
           style={userlblstyle}
           value={password}
           onChange={(e) => SetPassword(e.target.value)}
+          onKeyPress={handKeyDown}
         />
-        {/*Innebär, när errorMsg inträffar så kommer det andra att ske */}
+        {/*Innebär, när errorMsg inträffar så kommer det andra att ske
+            Error hantering */}
         {error && (
           <Typography color="error" sx={{ mb: 2 }}>
             {error}

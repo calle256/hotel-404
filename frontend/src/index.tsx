@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    {/*Ändra på elementet nedan för att rendera din komponent efter att ha importerat den  */}
     <Signup/>
   </React.StrictMode>
 );

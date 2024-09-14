@@ -8,11 +8,13 @@ import * as React from "react";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import { useState } from "react";
 import { profiles, IProfile } from "../../MocData/login";
+import { profile } from "console";
 
 const Login = () => {
+  //lite style
   const paperStyle = {
     padding: 20,
-    height: "45vh",
+    height: "50vh",
     width: 380,
     margin: "20px auto",
   };
@@ -25,24 +27,41 @@ const Login = () => {
   const [username, SetUsername] = useState("");
   //för att hantera password
   const [password, SetPassword] = useState("");
+  const [error, SetError] = useState("");
 
-
+  //Ifall användaren trycker på knappen "Enter " efter att ha fyllt i password
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter") {
       handleLogin();
     }
   };
 
-  //För att kolla ifall UserName och PassWord är rätt
+  //Funktion för att hantera Login och kollar på att errors som kan uppstå
   const handleLogin = () => {
-
-    //Kolla Genom Mock listan för att se ifall username och password hittar en match 
-    const match = profiles.find((profile) => profile.username === username && profile.password === password);
+    SetError("");
+    //Kolla Genom Mock listan för att se ifall username och password hittar en match
+    const match = profiles.find(
+      (profile) =>
+        profile.username === username && profile.password === password
+    );
+    //Kollar ifall det finns en matchande användarnamn men att lösenordet är fel
+    const wrongPassword = profiles.find(
+      (profile) =>
+        profile.username === username && profile.password !== password
+    );
     if (match) {
       alert("Login successful!");
+    } else if (wrongPassword) {
+      SetError("Wrong password!");
+      SetPassword("");
+      return;
     } else {
-      alert("Invalid username or password.");
+      SetError("No such a user!");
+      return;
     }
+
+    SetPassword("");
+    SetUsername("");
   };
 
   return (
@@ -89,6 +108,12 @@ const Login = () => {
           onChange={(e) => SetPassword(e.target.value)}
           onKeyPress={handleKeyDown}
         />
+        {/*Om det finns en  error, kommer följande att visas upp */}
+        {error && (
+          <Typography color="error" sx={{ mb: 2 }}>
+            {error}
+          </Typography>
+        )}
 
         <Button
           onClick={handleLogin}
@@ -103,7 +128,7 @@ const Login = () => {
             <b>Sign in</b>
           </Typography>
         </Button>
-        <Typography sx={{textAlign:'center'}}>
+        <Typography sx={{ textAlign: "center" }}>
           Do you want to create an account?&nbsp;
           <Link href="#">Sign Up</Link>
         </Typography>
