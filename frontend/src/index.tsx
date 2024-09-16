@@ -7,7 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import Signup from './Components/SignIn/signup';
 import NavAppBar from './Components/homeScreen/navBar';
 import SearchBar from './Components/homeScreen/searchBar';
+<<<<<<< HEAD
 import HotelTemplate from './Components/HotelDisplay/hoteltemplate';
+=======
+import Bookings from './Components/userBookingPage/userBookings'; 
+>>>>>>> 94f2c15677a4724134fbb9d15838639b229576fb
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +19,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     {/*Ändra på elementet nedan för att rendera din komponent efter att ha importerat den  */}
+<<<<<<< HEAD
     <HotelTemplate/>
+=======
+    <Bookings/>
+>>>>>>> 94f2c15677a4724134fbb9d15838639b229576fb
   </React.StrictMode>
 );
 
