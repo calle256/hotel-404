@@ -4,8 +4,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
+import { IHotel } from "../../MocData/hotelCards";
 
-const HotelCard = () => {
+interface HotelProps extends IHotel{}
+
+const HotelCard: React.FC<HotelProps> = ({image, title, description, price}) => {
   return (
     <Card
       sx={{
@@ -23,17 +26,15 @@ const HotelCard = () => {
             width: "100%",
             objectFit: "cover"
           }}
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmVBBG2nPwGQPO3qiCbizRb7Bu8MbjdHHCdg&s"
-          alt="green iguana"
+          image={image}
+          alt="Image of the Hotel"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            The Stack Overflow Hotel
+            {title}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Rooms are endless, but finding one is a bug! Enjoy infinite floors,
-            recursive hallways, and answers like “It depends.” Stuck? Just
-            restart your stay!
+            {description}
           </Typography>
           <Typography
             sx={{
@@ -42,7 +43,7 @@ const HotelCard = () => {
               fontWeight: "bolder",
             }}
           >
-            50$/Night
+            {price}$/Night
           </Typography>
         </CardContent>
       </CardActionArea>
