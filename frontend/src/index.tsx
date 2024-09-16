@@ -7,7 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import Signup from './Components/SignIn/signup';
 import NavAppBar from './Components/homeScreen/navBar';
 import SearchBar from './Components/homeScreen/searchBar';
-import DisplayCard from './Components/homeScreen/displayCard';
+import HotelCard from './Components/hotelDisplay/hotelCard'
+import DisplayHotel from './Components/hotelDisplay/displayHotelCard'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     {/*Ändra på elementet nedan för att rendera din komponent efter att ha importerat den  */}
-    <DisplayCard/>
+    <DisplayHotel/>
   </React.StrictMode>
 );
 
