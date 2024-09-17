@@ -8,7 +8,9 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import Box from '@mui/material/Box';
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
 import "./HotelTemplate.css";
 
 const itemData = [
@@ -52,15 +54,19 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
 
 const HotelTemplate = () => {
   return (
-    
-    <Grid container spacing={1}>
-      <Grid item xs={12} sm={8}>
+    <Grid container spacing={2} direction="column" alignItems="center">
+      <Box sx={{ width: 600, textAlign: "center", overflow: "hidden" }}>
+        {/* Image Grid */}
         <ImageList
-          className="custom-image-list"
-          sx={{ width: 500, height: 450 }}
+          sx={{
+            width: "100%",
+            height: "auto",
+            gap: 8, 
+            overflow: "hidden", 
+          }}
           variant="quilted"
           cols={2}
-          rowHeight={150}
+          rowHeight={180}
         >
           {itemData.map((item) => (
             <ImageListItem
@@ -69,14 +75,30 @@ const HotelTemplate = () => {
               rows={item.rows || 1}
             >
               <img
-                {...srcset(item.img, 150, item.rows, item.cols)}
-                alt={item.title}
+                {...srcset(item.img, 180, item.rows, item.cols)} 
+                alt={item.title || "Hotel Image"}
                 loading="lazy"
+                style={{
+                  borderRadius: "8px", //rounded corners (remove for sexy squares)
+                  objectFit: "cover", 
+                  width: "100%",
+                  height: "100%",
+                }}
               />
             </ImageListItem>
           ))}
         </ImageList>
-      </Grid>
+
+        {/* Text/Description aligned with images */}
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h4" sx={{ fontSize: "2rem" }}>
+            Hotel Lá Bomba
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
+            Welcome to Hotel Lá Bomba! A luxurious escape offering riverfront views, modern amenities, and an unforgettable experience.
+          </Typography>
+        </Box>
+      </Box>
     </Grid>
   );
 };
