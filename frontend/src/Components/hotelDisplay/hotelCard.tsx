@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import { IHotel } from "../../MocData/hotelCards";
 
-interface HotelProps extends IHotel{}
+type HotelProps = IHotel
 
 const HotelCard: React.FC<HotelProps> = ({image, title, description, price}) => {
   return (
