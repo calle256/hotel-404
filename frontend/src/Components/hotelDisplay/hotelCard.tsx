@@ -18,6 +18,7 @@ const HotelCard: React.FC<HotelProps> = ({image, title, description, price}) => 
         flexDirection: 'column'
       }}
     >
+      
       <CardActionArea>
         <CardMedia
           component="img"
