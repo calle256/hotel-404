@@ -14,8 +14,19 @@ import Bookings from './Components/userBookingPage/userBookings';
 //Används för att hålla koll på globalt tillstånd i individuella komponenter
 export const LoggedinContext = React.createContext<any>(false);    
 
+var initLoggedin = sessionStorage.getItem("loggedin") === "true"; 
+
+const booking = () => {
+  return (
+    <div>
+    <NavAppBar/>
+    <Bookings/>
+    </div>
+  )
+}
+
 const Application: React.FC = () => {
-  const [loggedin, setLoggedin] = useState(false);
+  const [loggedin, setLoggedin] = useState(initLoggedin);
 
   useEffect(() => {
     var sessionLoggedin = window.sessionStorage.getItem("loggedin");
@@ -37,13 +48,16 @@ const Application: React.FC = () => {
   }
   else {
     return (
+      <div>
       <BrowserRouter>
-        <Routes>
+      <NavAppBar/>
+       <Routes>
           <Route path="/" element={<SearchBar/>}/>
           <Route path="/mybookings" element={<Bookings/>}/>
           <Route path="navapp" element={<NavAppBar/>}/>
         </Routes>
       </BrowserRouter>
+      </div>
     )
   }
 }; 
